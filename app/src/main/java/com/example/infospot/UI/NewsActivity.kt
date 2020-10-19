@@ -1,12 +1,12 @@
-package com.example.infospot.ui
+package com.example.infospot.UI
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.infospot.fragments.BreakingNewsFragment
 import com.example.infospot.R
-import com.example.infospot.ui.Fragments.BreakingNewsFragment
-import com.example.infospot.ui.Fragments.SavedNewsFragment
-import com.example.infospot.ui.Fragments.SearchNewsFragment
+import com.example.infospot.fragments.SavedNewsFragment
+import com.example.infospot.fragments.SearchNewsFragment
 import com.fxn.OnBubbleClickListener
 import kotlinx.android.synthetic.main.activity_news.*
 

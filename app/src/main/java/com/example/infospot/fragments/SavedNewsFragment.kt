@@ -1,4 +1,4 @@
-package com.example.infospot.ui.Fragments
+package com.example.infospot.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,5 +7,5 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.infospot.R
 
-class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
+class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
 }
