@@ -4,4 +4,8 @@
     <string name="news">News</string>
     <string name="search">Search</string>
     <string name="saved">Saved</string>
+    <string name="see_all">see all</string>
+    <string name="recent_news">Recent News</string>
+    <string name="top_news">TOP NEWS</string>
+    <string name="Date_day_format_example">Wednesday , November 1</string>
 </resources>

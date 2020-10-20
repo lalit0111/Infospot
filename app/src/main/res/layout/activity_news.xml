@@ -31,7 +31,7 @@
 
 
         <com.fxn.BubbleTabBar
-            android:id="@+id/bottomNavigationView"
+            android:id="@+id/bottomTabBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFF"
