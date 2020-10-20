@@ -3,6 +3,8 @@ package com.example.infospot.UI
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
+import com.example.infospot.Adapters.FragmentViewPagerAdapter
 import com.example.infospot.fragments.BreakingNewsFragment
 import com.example.infospot.R
 import com.example.infospot.fragments.SavedNewsFragment
@@ -19,24 +21,14 @@ class NewsActivity : AppCompatActivity() {
         val savedNewsFragment = SavedNewsFragment()
         val searchNewsFragment = SearchNewsFragment()
 
-        setCurrentFragment(breakingNewsFragment)
+        val viewPagerAdapter = FragmentViewPagerAdapter(supportFragmentManager)
 
-        bottomNavigationView.addBubbleListener(object : OnBubbleClickListener {
-            override fun onBubbleClick(id: Int) {
-                when (id) {
-                    R.id.breakingNewsFragment -> setCurrentFragment(breakingNewsFragment)
-                    R.id.savedNewsFragment -> setCurrentFragment(savedNewsFragment)
-                    R.id.searchNewsFragment -> setCurrentFragment(searchNewsFragment)
-                }
-            }
-        })
+        viewPagerAdapter.addFragment(savedNewsFragment)
+        viewPagerAdapter.addFragment(breakingNewsFragment)
+        viewPagerAdapter.addFragment(searchNewsFragment)
+        fragmentViewPager.adapter=viewPagerAdapter
+
+        bottomNavigationView.setupBubbleTabBar(viewPager = fragmentViewPager)
 
     }
-
-
-    private fun setCurrentFragment(fragment: Fragment) =
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flFragment, fragment)
-            commit()
-        }
 }

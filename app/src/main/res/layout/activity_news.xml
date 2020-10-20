@@ -7,8 +7,8 @@
     android:background="@color/white"
     tools:context=".UI.NewsActivity">
 
-    <FrameLayout
-        android:id="@+id/flFragment"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/fragmentViewPager"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/tabBarContainer"
@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flFragment">
+        app:layout_constraintTop_toBottomOf="@+id/fragmentViewPager">
 
 
         <com.fxn.BubbleTabBar
