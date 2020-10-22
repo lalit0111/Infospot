@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.infospot.R
 import com.example.infospot.models.Article
 import kotlinx.android.synthetic.main.top_news_cardview.view.*
@@ -34,24 +35,38 @@ class TopNewsAdapter : RecyclerView.Adapter<TopNewsAdapter.myViewHolder>() {
 
     override fun onBindViewHolder(holder: myViewHolder, position: Int) {
 
-//        val article = differ.currentList.get(position)
+        val article = differ.currentList.get(position)
         holder.itemView.apply {
+
+            val gradientPosition = position % 5
             topNewsCategoryCard.background =
-                resources.getDrawable(holder.gradients.get(position + 2))
+                resources.getDrawable(holder.gradients.get(gradientPosition))
+
+            topNewsName.text = article.source.name
+            topNewsTitle.text = article.title
+            Glide.with(this)
+                .load(article.urlToImage)
+                .fitCenter()
+                .into(topNewsRecyclerViewImage)
+
             setOnClickListener {
-//                onItemClickListener?.let { it(article) }
+                onItemClickListener?.let { it(article) }
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return differ.currentList.size
     }
 
     private var onItemClickListener: ((Article) -> Unit)? = null
 
     fun setOnItemClickListener(listner: (Article) -> Unit) {
         onItemClickListener = listner
+    }
+
+    private fun setBackgroundToCards() {
+
     }
 
     inner class myViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

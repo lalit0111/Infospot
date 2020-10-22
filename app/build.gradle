@@ -74,4 +74,7 @@ dependencies {
     //ViewPager 2
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 
+    //Loading Animation
+    implementation 'com.eyalbira.loadingdots:loading-dots:1.0.2'
+
 }
