@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="320dp"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:layout_marginStart="10dp"
@@ -13,7 +13,9 @@
         android:layout_marginBottom="10dp"
         app:cardCornerRadius="10dp"
         android:background="@drawable/custom_card"
-        app:cardElevation="10dp">
+        app:cardElevation="10dp"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/topNewsRecyclerViewImage"
@@ -22,18 +24,19 @@
             android:background="@drawable/image_round_corners"
             android:scaleType="fitXY" />
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/topNewsCategoryCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        app:cardCornerRadius="5dp">
+        app:cardCornerRadius="5dp"
+        app:cardElevation="10dp">
 
         <TextView
             android:id="@+id/topNewsName"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="Category"

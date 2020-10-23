@@ -11,34 +11,35 @@
         android:id="@+id/fragmentViewPager"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@id/tabBarContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/tabBarContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:translationZ="1dp"
         app:cardElevation="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:translationZ="1dp"
         app:cardCornerRadius="10dp"
+        app:strokeColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentViewPager">
+        app:strokeWidth="0.1dp">
 
 
         <com.fxn.BubbleTabBar
             android:id="@+id/bottomTabBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFF"
             android:layout_margin="2dp"
+            android:background="#FFF"
             android:padding="7dp"
             app:bubbletab_disabled_icon_color="@color/black"
             app:bubbletab_horizontal_padding="20dp"
@@ -46,12 +47,10 @@
             app:bubbletab_icon_size="20dp"
             app:bubbletab_menuResource="@menu/bottom_navigation_menu"
             app:bubbletab_title_size="16sp"
-            app:bubbletab_vertical_padding="10dp"
-           />
+            app:bubbletab_vertical_padding="10dp" />
 
 
-    </androidx.cardview.widget.CardView>
-
+    </com.google.android.material.card.MaterialCardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
