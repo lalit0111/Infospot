@@ -24,7 +24,6 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
-        setGradientBackgroundsTocards()
 
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
@@ -50,10 +49,6 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
     }
 
-    private fun setGradientBackgroundsTocards() {
-        recentNewsCategoryCard1.background = resources.getDrawable(R.drawable.gradient1)
-        recentNewsCategoryCard2.background = resources.getDrawable(R.drawable.gradient2)
-    }
 
     private fun setupRecyclerView() {
         newsAdapter = TopNewsAdapter()

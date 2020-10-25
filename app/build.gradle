@@ -77,4 +77,6 @@ dependencies {
     //Loading Animation
     implementation 'com.eyalbira.loadingdots:loading-dots:1.0.2'
 
+    compile 'me.yuqirong:cardswipelayout:1.0.0'
+
 }
