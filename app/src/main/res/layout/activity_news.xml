@@ -12,7 +12,7 @@
         android:id="@+id/fragmentViewPager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/white"
+        android:background="@drawable/image_round_corners"
         app:layout_constraintBottom_toTopOf="@id/tabBarContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +20,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/tabBarContainer"
+        app:strokeColor="@color/black"
+        app:strokeWidth="0.3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"

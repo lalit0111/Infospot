@@ -1,5 +1,6 @@
 package com.example.infospot.Adapters
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Shader
@@ -7,6 +8,8 @@ import android.text.TextPaint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +21,7 @@ import kotlinx.android.synthetic.main.top_news_cardview.view.*
 
 class TopNewsAdapter : RecyclerView.Adapter<TopNewsAdapter.myViewHolder>() {
 
+    inner class myViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -42,28 +46,17 @@ class TopNewsAdapter : RecyclerView.Adapter<TopNewsAdapter.myViewHolder>() {
 
         val article = differ.currentList.get(position)
         holder.itemView.apply {
-//
-//            val gradientPosition = position % 5
-//            topNewsCategoryCard.background =
-//                resources.getDrawable(holder.gradients.get(gradientPosition))
 
-            val paint: TextPaint = topNewsName.paint
-            val width = paint.measureText(article.source.name)
-
-            val textShader: Shader = LinearGradient(
-                0F, 0F, width, topNewsName.textSize, intArrayOf(
-                    Color.parseColor("#150bb8"),
-                    Color.parseColor("#fc1bd1"),
-                ), null, Shader.TileMode.CLAMP
-            )
-            topNewsName.paint.shader = textShader
+            paintText(topNewsName, article.source.name)
 
             topNewsName.text = article.source.name
             topNewsTitle.text = article.title
-            Glide.with(this)
-                .load(article.urlToImage)
-                .fitCenter()
-                .into(topNewsRecyclerViewImage)
+
+            loadImage(context, article.urlToImage, topNewsRecyclerViewImage)
+
+            saveArticleButton.setOnClickListener(View.OnClickListener {
+                saveArticleButton.background = resources.getDrawable(R.drawable.bookmark)
+            })
 
             setOnClickListener {
                 onItemClickListener?.let { it(article) }
@@ -75,24 +68,35 @@ class TopNewsAdapter : RecyclerView.Adapter<TopNewsAdapter.myViewHolder>() {
         return differ.currentList.size
     }
 
+
     private var onItemClickListener: ((Article) -> Unit)? = null
 
     fun setOnItemClickListener(listner: (Article) -> Unit) {
         onItemClickListener = listner
     }
 
-    private fun setBackgroundToCards() {
 
-    }
+    private fun paintText(textView: TextView, text: String) {
 
-    inner class myViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val gradients = arrayOf(
-            R.drawable.gradient1,
-            R.drawable.gradient2,
-            R.drawable.gradient3,
-            R.drawable.gradient4,
-            R.drawable.gradient5
+        val paint: TextPaint = textView.paint
+        val width = paint.measureText(text)
+
+        val textShader: Shader = LinearGradient(
+            0F, 0F, width, textView.textSize, intArrayOf(
+                Color.parseColor("#150bb8"),
+                Color.parseColor("#fc1bd1"),
+            ), null, Shader.TileMode.CLAMP
         )
+        textView.paint.shader = textShader
+
     }
+
+    private fun loadImage(context: Context, url: String, image: ImageView) {
+        Glide.with(context)
+            .load(url)
+            .fitCenter()
+            .into(image)
+    }
+
 
 }

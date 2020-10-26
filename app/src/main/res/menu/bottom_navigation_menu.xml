@@ -4,6 +4,7 @@
     <item
         android:id="@+id/savedNewsFragment"
         android:title="@string/saved"
+        android:iconTint="@color/colorPrimary"
         android:icon="@drawable/ic_baseline_bookmarks_24" />
 
     <item
@@ -16,6 +17,7 @@
     <item
         android:id="@+id/searchNewsFragment"
         android:title="@string/search"
+        android:iconTint="@color/colorPrimary"
         android:icon="@drawable/ic_baseline_search_24"
         />
 

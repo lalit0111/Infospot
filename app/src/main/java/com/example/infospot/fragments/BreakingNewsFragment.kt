@@ -6,10 +6,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.infospot.Adapters.CategoryAdapter
 import com.example.infospot.Adapters.TopNewsAdapter
 import com.example.infospot.R
 import com.example.infospot.UI.NewsActivity
 import com.example.infospot.UI.NewsViewModel
+import com.example.infospot.utils.Constants.Companion.CATEGORY_LIST
 import com.example.infospot.utils.Resource
 import kotlinx.android.synthetic.main.fragment_breaking_news.*
 
@@ -18,6 +20,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: TopNewsAdapter
+    lateinit var categoryAdapter: CategoryAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,19 +49,30 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
                 }
             }
         })
-
     }
 
 
     private fun setupRecyclerView() {
         newsAdapter = TopNewsAdapter()
+        categoryAdapter = CategoryAdapter(CATEGORY_LIST)
+
         val linearLayoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.HORIZONTAL,
             false
         )
+
+        val linearLayoutManager2 = LinearLayoutManager(
+            context,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+
         topNewsRecyclerView.layoutManager = linearLayoutManager
         topNewsRecyclerView.adapter = newsAdapter
+
+        categoryRecyclerView.layoutManager = linearLayoutManager2
+        categoryRecyclerView.adapter = categoryAdapter
     }
 
     private fun hideProgressBar() {
