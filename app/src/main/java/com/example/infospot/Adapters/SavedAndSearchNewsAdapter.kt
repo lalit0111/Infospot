@@ -16,12 +16,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.infospot.R
 import com.example.infospot.models.Article
-import kotlinx.android.synthetic.main.top_news_cardview.view.*
+import kotlinx.android.synthetic.main.search_and_save_card.view.*
 
+class SavedAndSearchNewsAdapter :
+    RecyclerView.Adapter<SavedAndSearchNewsAdapter.savedNewsViewHoler>() {
 
-class TopNewsAdapter : RecyclerView.Adapter<TopNewsAdapter.myViewHolder>() {
-
-    inner class myViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class savedNewsViewHoler(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -35,46 +35,27 @@ class TopNewsAdapter : RecyclerView.Adapter<TopNewsAdapter.myViewHolder>() {
 
     val differ = AsyncListDiffer(this, differCallback)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): savedNewsViewHoler {
         val inflater = LayoutInflater.from(parent.context)
-        val itemView = inflater.inflate(R.layout.top_news_cardview, parent, false)
-        return myViewHolder(itemView)
+        val itemView = inflater.inflate(R.layout.search_and_save_card, parent, false)
+        return savedNewsViewHoler(itemView)
     }
 
-    override fun onBindViewHolder(holder: myViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: savedNewsViewHoler, position: Int) {
 
         val article = differ.currentList.get(position)
+
         holder.itemView.apply {
-
-            paintText(topNewsName, article.source.name)
-
-            topNewsName.text = article.source.name
-            topNewsTitle.text = article.title
-
-            loadImage(context, article.urlToImage, topNewsRecyclerViewImage)
-
-            saveArticleButton.setOnClickListener(View.OnClickListener {
-                saveArticleButton.background =
-                    resources.getDrawable(R.drawable.ic_baseline_check_24)
-            })
-
-            setOnClickListener {
-                onItemClickListener?.let { it(article) }
-            }
+            paintText(holder.itemView.savedAndSearchNewsName, "something")
+            savedAndSearchNewsName.text = article.source.name
+            savedAndSearchNewsTitle.text = article.title
+            loadImage(context, article.urlToImage, savedAndSearchNewsImage)
         }
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
-
-
-    private var onItemClickListener: ((Article) -> Unit)? = null
-
-    fun setOnItemClickListener(listner: (Article) -> Unit) {
-        onItemClickListener = listner
-    }
-
 
     private fun paintText(textView: TextView, text: String) {
 
@@ -88,15 +69,12 @@ class TopNewsAdapter : RecyclerView.Adapter<TopNewsAdapter.myViewHolder>() {
             ), null, Shader.TileMode.CLAMP
         )
         textView.paint.shader = textShader
-
     }
 
     private fun loadImage(context: Context, url: String, image: ImageView) {
         Glide.with(context)
             .load(url)
-            .fitCenter()
+            .placeholder(R.drawable.nopath)
             .into(image)
     }
-
-
 }
