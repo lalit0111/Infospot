@@ -76,10 +76,11 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     }
 
     private fun hideProgressBar() {
-        progressBar.visibility = View.INVISIBLE
+        shimmer.stopShimmer()
+        cardForShimmer.visibility = View.GONE
     }
 
     private fun showProgressBar() {
-        progressBar.visibility = View.VISIBLE
+        shimmer.startShimmer()
     }
 }

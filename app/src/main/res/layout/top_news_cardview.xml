@@ -21,13 +21,15 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="180dp"
+            android:background="@drawable/image_round_corners"
+            app:cardCornerRadius="0dp"
             android:layout_marginBottom="10dp">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/topNewsRecyclerViewImage"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:background="@drawable/image_round_corners"
+                android:layout_height="match_parent"
                 android:scaleType="fitXY" />
 
         </com.google.android.material.card.MaterialCardView>

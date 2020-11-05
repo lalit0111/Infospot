@@ -81,5 +81,9 @@ dependencies {
     //Search Bar
     implementation 'com.eldersoss:elderssearchview:1.0.0'
 
-    implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.6'
+    //gif image view
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
+
+    //shimmer effect
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
 }

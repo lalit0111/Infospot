@@ -26,10 +26,12 @@ class CategoryAdapter(val list: ArrayList<Category>) :
 
     override fun onBindViewHolder(holder: myViewHolder, position: Int) {
 
-        paintText(holder.itemView.categoryName, list.get(position).categoryName)
-
+//        paintText(holder.itemView.categoryName, list.get(position).categoryName)
         holder.itemView.categoryName.text = list.get(position).categoryName
         holder.itemView.categoryRecyclerViewImage.setImageResource(list.get(position).drawable)
+        holder.itemView.mainCard.setCardBackgroundColor(Color.parseColor(list.get(position).categoryColor))
+        holder.itemView.smallCard.setCardBackgroundColor(Color.parseColor(list.get(position).categoryColor))
+        holder.itemView.linear.setBackgroundColor(Color.parseColor(list.get(position).categoryColor))
     }
 
     override fun getItemCount(): Int {

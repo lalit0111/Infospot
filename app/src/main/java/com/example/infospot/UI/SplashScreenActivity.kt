@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.example.infospot.R
+import com.example.infospot.utils.Constants.Companion.SPLASH_TIME_OUT
 
 class SplashScreenActivity : AppCompatActivity() {
-
-    private val SPLASH_TIME_OUT: Long = 1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
