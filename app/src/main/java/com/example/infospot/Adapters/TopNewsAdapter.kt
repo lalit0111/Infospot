@@ -35,6 +35,10 @@ class TopNewsAdapter : RecyclerView.Adapter<TopNewsAdapter.myViewHolder>() {
 
     val differ = AsyncListDiffer(this, differCallback)
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val itemView = inflater.inflate(R.layout.top_news_cardview, parent, false)
