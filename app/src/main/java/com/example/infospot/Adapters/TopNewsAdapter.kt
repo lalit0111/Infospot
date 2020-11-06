@@ -95,6 +95,7 @@ class TopNewsAdapter : RecyclerView.Adapter<TopNewsAdapter.myViewHolder>() {
         Glide.with(context)
             .load(url)
             .fitCenter()
+            .placeholder(R.drawable.nopath)
             .into(image)
     }
 

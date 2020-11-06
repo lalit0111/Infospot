@@ -1,5 +1,6 @@
 package com.example.infospot.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infospot.Adapters.CategoryAdapter
 import com.example.infospot.Adapters.TopNewsAdapter
 import com.example.infospot.R
+import com.example.infospot.UI.ArticleWebViewActivity
 import com.example.infospot.UI.NewsActivity
 import com.example.infospot.UI.NewsViewModel
 import com.example.infospot.utils.Constants.Companion.CATEGORY_LIST
@@ -27,6 +29,12 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
+
+        newsAdapter.setOnItemClickListener {
+            val intent = Intent(context, ArticleWebViewActivity::class.java)
+            intent.putExtra("articleURL", it.url)
+            startActivity(intent)
+        }
 
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
@@ -50,7 +58,6 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
             }
         })
     }
-
 
     private fun setupRecyclerView() {
         newsAdapter = TopNewsAdapter()

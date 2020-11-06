@@ -1,5 +1,6 @@
 package com.example.infospot.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -8,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infospot.Adapters.SavedAndSearchNewsAdapter
 import com.example.infospot.R
+import com.example.infospot.UI.ArticleWebViewActivity
 import com.example.infospot.UI.NewsActivity
 import com.example.infospot.UI.NewsViewModel
 import com.example.infospot.utils.Constants.Companion.SEARCH_NEWS_TIME_DELAY
@@ -27,6 +29,12 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
 
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
+
+        searchAndSearchNewsAdapter.setOnItemClickListener {
+            val intent = Intent(context, ArticleWebViewActivity::class.java)
+            intent.putExtra("articleURL", it.url)
+            startActivity(intent)
+        }
 
         var job: Job? = null
         search_bar.setOnSearchTextChangeListener { editable ->

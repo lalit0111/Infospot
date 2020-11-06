@@ -50,11 +50,21 @@ class SavedAndSearchNewsAdapter :
             savedAndSearchNewsName.text = article.source.name
             savedAndSearchNewsTitle.text = article.title
             loadImage(context, article.urlToImage, savedAndSearchNewsImage)
+
+            setOnClickListener {
+                onItemClickListener?.let { it(article) }
+            }
         }
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
+    }
+
+    private var onItemClickListener: ((Article) -> Unit)? = null
+
+    fun setOnItemClickListener(listner: (Article) -> Unit) {
+        onItemClickListener = listner
     }
 
     private fun paintText(textView: TextView, text: String) {
