@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.infospot.Repository.NewsRepository
+import com.example.infospot.models.Article
 import com.example.infospot.models.NewsResponse
 import com.example.infospot.utils.Resource
 import kotlinx.coroutines.launch
@@ -51,5 +52,15 @@ class NewsViewModel(
             }
         }
         return Resource.Error(response.message())
+    }
+
+    fun saveArticle(article: Article) = viewModelScope.launch {
+        newsRepository.insert(article)
+    }
+
+    fun getSavedNews() = newsRepository.getSavedNews()
+
+    fun deleteSavedNews(article: Article) = viewModelScope.launch {
+        newsRepository.deleteArticle(article)
     }
 }

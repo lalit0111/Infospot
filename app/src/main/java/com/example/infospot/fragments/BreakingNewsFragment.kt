@@ -36,6 +36,8 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
             startActivity(intent)
         }
 
+
+
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success -> {
@@ -60,7 +62,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     }
 
     private fun setupRecyclerView() {
-        newsAdapter = TopNewsAdapter()
+        newsAdapter = TopNewsAdapter(viewModel)
         categoryAdapter = CategoryAdapter(CATEGORY_LIST)
 
         val linearLayoutManager = LinearLayoutManager(

@@ -15,11 +15,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.infospot.R
+import com.example.infospot.UI.NewsViewModel
 import com.example.infospot.models.Article
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.top_news_cardview.view.*
 
 
-class TopNewsAdapter : RecyclerView.Adapter<TopNewsAdapter.myViewHolder>() {
+class TopNewsAdapter(val viewModel: NewsViewModel) :
+    RecyclerView.Adapter<TopNewsAdapter.myViewHolder>() {
 
     inner class myViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -57,10 +60,16 @@ class TopNewsAdapter : RecyclerView.Adapter<TopNewsAdapter.myViewHolder>() {
 
             loadImage(context, article.urlToImage, topNewsRecyclerViewImage)
 
-            saveArticleButton.setOnClickListener(View.OnClickListener {
+            saveArticleButton.setOnClickListener {
                 saveArticleButton.background =
                     resources.getDrawable(R.drawable.ic_baseline_check_24)
-            })
+                viewModel.saveArticle(article)
+                Snackbar.make(
+                    holder.itemView,
+                    "Article saved Successfully!!",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
 
             setOnClickListener {
                 onItemClickListener?.let { it(article) }
