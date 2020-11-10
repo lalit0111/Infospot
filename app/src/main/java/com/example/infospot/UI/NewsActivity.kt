@@ -30,7 +30,7 @@ class NewsActivity : AppCompatActivity() {
         val savedNewsFragment = SavedNewsFragment()
         val searchNewsFragment = SearchNewsFragment()
 
-        //Creating Veiwpager Adapter
+        //Creating Viewpager Adapter
         val viewPagerAdapter = FragmentViewPagerAdapter(supportFragmentManager)
 
         //Adding Fragments To Viewpager

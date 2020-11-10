@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager.widget.ViewPager
 import com.example.infospot.Adapters.CategoryAdapter
 import com.example.infospot.Adapters.TopNewsAdapter
 import com.example.infospot.R
@@ -23,6 +24,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: TopNewsAdapter
     lateinit var categoryAdapter: CategoryAdapter
+    lateinit var viewPager: ViewPager
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,13 +32,12 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
 
+
         newsAdapter.setOnItemClickListener {
             val intent = Intent(context, ArticleWebViewActivity::class.java)
             intent.putExtra("articleURL", it.url)
             startActivity(intent)
         }
-
-
 
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
@@ -92,4 +93,5 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     private fun showProgressBar() {
         shimmer.startShimmer()
     }
+
 }

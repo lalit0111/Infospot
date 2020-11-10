@@ -24,7 +24,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+            ItemTouchHelper.RIGHT
         ) {
             override fun onMove(
                 recyclerView: RecyclerView,
@@ -70,7 +70,6 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
         )
         savedNewsRecyclerView.layoutManager = linearLayoutManager
         savedNewsRecyclerView.adapter = savedAndSearchNewsAdapter
-
     }
 
 }

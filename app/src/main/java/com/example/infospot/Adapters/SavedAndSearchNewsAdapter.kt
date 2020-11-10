@@ -25,7 +25,7 @@ class SavedAndSearchNewsAdapter :
 
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem.url == newItem.url
+            return oldItem.title == newItem.title
         }
 
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -49,7 +49,9 @@ class SavedAndSearchNewsAdapter :
             paintText(holder.itemView.savedAndSearchNewsName, "something")
             savedAndSearchNewsName.text = article.source.name
             savedAndSearchNewsTitle.text = article.title
+            dateTextView.text = formatDate(article.publishedAt)
             loadImage(context, article.urlToImage, savedAndSearchNewsImage)
+
 
             setOnClickListener {
                 onItemClickListener?.let { it(article) }
@@ -86,5 +88,27 @@ class SavedAndSearchNewsAdapter :
             .load(url)
             .placeholder(R.drawable.nopath)
             .into(image)
+    }
+
+    private fun formatDate(d: String): String {
+        val year = d.substring(0, 4)
+        val month = d.substring(5, 7)
+        val date = d.substring(8, 10)
+        val monthName = when (month.toInt()) {
+            1 -> "Jan"
+            2 -> "Feb"
+            3 -> "Mar"
+            4 -> "Apr"
+            5 -> "May"
+            6 -> "Jun"
+            7 -> "Jul"
+            8 -> "Aug"
+            9 -> "Sep"
+            10 -> "Oct"
+            11 -> "Nov"
+            12 -> "Dec"
+            else -> ""
+        }
+        return "$date $monthName $year"
     }
 }

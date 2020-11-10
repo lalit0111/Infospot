@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,8 @@ import com.example.infospot.UI.NewsViewModel
 import com.example.infospot.models.Article
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.top_news_cardview.view.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class TopNewsAdapter(val viewModel: NewsViewModel) :
@@ -50,7 +53,7 @@ class TopNewsAdapter(val viewModel: NewsViewModel) :
 
     override fun onBindViewHolder(holder: myViewHolder, position: Int) {
 
-        val article = differ.currentList.get(position)
+        val article = differ.currentList[position]
         holder.itemView.apply {
 
             paintText(topNewsName, article.source.name)
@@ -60,15 +63,34 @@ class TopNewsAdapter(val viewModel: NewsViewModel) :
 
             loadImage(context, article.urlToImage, topNewsRecyclerViewImage)
 
+            viewModel.viewModelScope.launch(Dispatchers.Main) {
+                if (viewModel.isArticleSaved(article)) {
+                    saveArticleButton.background =
+                        resources.getDrawable(R.drawable.ic_baseline_check_24)
+                }
+            }
+
             saveArticleButton.setOnClickListener {
-                saveArticleButton.background =
-                    resources.getDrawable(R.drawable.ic_baseline_check_24)
-                viewModel.saveArticle(article)
-                Snackbar.make(
-                    holder.itemView,
-                    "Article saved Successfully!!",
-                    Snackbar.LENGTH_SHORT
-                ).show()
+                viewModel.viewModelScope.launch(Dispatchers.Main) {
+                    if (viewModel.isArticleSaved(article)) {
+                        Snackbar.make(
+                            holder.itemView,
+                            "Article already saved!!",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+
+                    } else {
+                        saveArticleButton.background =
+                            resources.getDrawable(R.drawable.ic_baseline_check_24)
+                        Snackbar.make(
+                            holder.itemView,
+                            "Article saved successfully!!",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        viewModel.saveArticle(article)
+                        notifyDataSetChanged()
+                    }
+                }
             }
 
             setOnClickListener {

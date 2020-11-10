@@ -1,11 +1,16 @@
 package com.example.infospot.models
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(
-    tableName = "articles"
+    tableName = "articles",
+    indices = [Index(
+        value = ["title", "publishedAt"],
+        unique = true
+    )]
 )
 data class Article(
 

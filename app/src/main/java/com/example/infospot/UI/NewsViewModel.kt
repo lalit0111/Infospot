@@ -1,5 +1,6 @@
 package com.example.infospot.UI
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,6 +8,7 @@ import com.example.infospot.Repository.NewsRepository
 import com.example.infospot.models.Article
 import com.example.infospot.models.NewsResponse
 import com.example.infospot.utils.Resource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -63,4 +65,18 @@ class NewsViewModel(
     fun deleteSavedNews(article: Article) = viewModelScope.launch {
         newsRepository.deleteArticle(article)
     }
+
+    suspend fun isArticleSaved(article: Article): Boolean {
+        var a: Article? = null
+        Log.d("IsArticleSaved", "job started")
+        val job = viewModelScope.launch(Dispatchers.IO) {
+            a = newsRepository.isArticleSaved(article)
+            Log.d("IsArticleSaved", a.toString())
+        }
+        job.join()
+        Log.d("IsArticleSaved", "job finish")
+        return a != null
+    }
+
+
 }
