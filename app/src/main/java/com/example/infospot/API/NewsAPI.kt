@@ -18,6 +18,18 @@ interface NewsAPI {
         apiKey: String = API_KEY
     ): Response<NewsResponse>
 
+    @GET("/v2/top-headlines")
+    suspend fun getCategoryNews(
+        @Query("country")
+        countryCode: String = "in",
+        @Query("category")
+        category: String,
+        @Query("page")
+        pageNo: Int = 1,
+        @Query("apiKey")
+        apiKey: String = API_KEY
+    ): Response<NewsResponse>
+
     @GET("/v2/everything")
     suspend fun searchNews(
         @Query("q")

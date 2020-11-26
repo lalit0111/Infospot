@@ -46,6 +46,8 @@ class NewsActivity : AppCompatActivity() {
 
         //Setting Viewpager To TabBar
         bottomTabBar.setupBubbleTabBar(viewPager = fragmentViewPager)
+        bottomTabBar.isFocusableInTouchMode = true
+        bottomTabBar.touchscreenBlocksFocus = true
 
         bottomTabBar.addBubbleListener(object : OnBubbleClickListener {
             override fun onBubbleClick(id: Int) {

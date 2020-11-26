@@ -1,13 +1,9 @@
 package com.example.infospot.Adapters
 
 import android.graphics.Color
-import android.graphics.LinearGradient
-import android.graphics.Shader
-import android.text.TextPaint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.infospot.R
 import com.example.infospot.models.Category
@@ -32,25 +28,25 @@ class CategoryAdapter(val list: ArrayList<Category>) :
         holder.itemView.mainCard.setCardBackgroundColor(Color.parseColor(list.get(position).categoryColor))
         holder.itemView.smallCard.setCardBackgroundColor(Color.parseColor(list.get(position).categoryColor))
         holder.itemView.linear.setBackgroundColor(Color.parseColor(list.get(position).categoryColor))
+
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.let {
+                it(
+                    list.get(position).categoryName,
+                    list.get(position).categoryColor
+                )
+            }
+        }
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    private fun paintText(textView: TextView, text: String) {
+    private var onItemClickListener: ((category: String, color: String) -> Unit)? = null
 
-        val paint: TextPaint = textView.paint
-        val width = paint.measureText(text)
-
-        val textShader: Shader = LinearGradient(
-            0F, 0F, width, textView.textSize, intArrayOf(
-                Color.parseColor("#150bb8"),
-                Color.parseColor("#fc1bd1"),
-            ), null, Shader.TileMode.CLAMP
-        )
-        textView.paint.shader = textShader
-
+    fun setOnItemClickListener(listner: (category: String, color: String) -> Unit) {
+        onItemClickListener = listner
     }
 
 }
