@@ -13,6 +13,8 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
+        window.statusBarColor = resources.getColor(R.color.darkYellow, theme)
+
         Handler().postDelayed({
             val intent = Intent(this, NewsActivity::class.java)
             startActivity(intent)

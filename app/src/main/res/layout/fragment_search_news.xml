@@ -14,20 +14,12 @@
         android:layout_height="match_parent"
         android:layout_marginTop="70dp" />
 
-    <com.eyalbira.loadingdots.LoadingDots
-        android:id="@+id/progressBar"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/searchIllustration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="30dp"
-        android:layout_marginTop="380dp"
-        android:layout_marginBottom="300dp"
-        android:visibility="gone"
-        app:LoadingDots_auto_play="true"
-        app:LoadingDots_dots_color="@color/colorPrimary"
-        app:LoadingDots_dots_count="3"
-        app:LoadingDots_dots_space="10dp"
-        app:LoadingDots_loop_duration="1000" />
+        android:layout_marginStart="30dp"
+        android:src="@drawable/ic_search_illustration" />
 
     <com.eldersoss.elderssearchview.EldersSearchView
         android:id="@+id/search_bar"
@@ -42,5 +34,6 @@
         app:esvNoFilter="true"
         app:esvSpeechRecognizerLogo="@drawable/icon_with_text"
         app:esvSuggestionsEnabled="true" />
+
 
 </FrameLayout>

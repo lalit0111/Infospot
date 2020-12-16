@@ -50,10 +50,25 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/savedNewsRecyclerView"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="fill_parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/saveIllustration"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/ic_bookmark_illustration" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/savedNewsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </FrameLayout>
+
 
     </LinearLayout>
 

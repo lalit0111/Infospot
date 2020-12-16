@@ -12,6 +12,7 @@ import com.example.infospot.UI.NewsActivity
 import com.example.infospot.UI.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_saved_news.*
+import kotlinx.android.synthetic.main.fragment_search_news.*
 
 class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
 
@@ -21,6 +22,10 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
+
+        if (savedAndSearchNewsAdapter.differ.currentList.isNotEmpty()) {
+            searchIllustration.visibility = View.GONE
+        }
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,

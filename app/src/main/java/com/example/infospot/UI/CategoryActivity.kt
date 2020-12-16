@@ -64,7 +64,6 @@ class CategoryActivity : AppCompatActivity() {
 
         closeButton.setOnClickListener {
             onBackPressed()
-            window.statusBarColor = Color.WHITE
         }
     }
 
@@ -87,7 +86,7 @@ class CategoryActivity : AppCompatActivity() {
 
     private fun hideShimmer() {
         categoryShimmer.stopShimmer()
-        shimmmerCardLayout.visibility = View.GONE
+        shimmerCardLayout.visibility = View.GONE
     }
 
     private fun showShimmer() {

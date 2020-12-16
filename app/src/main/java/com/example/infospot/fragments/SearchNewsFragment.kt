@@ -60,32 +60,24 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
         viewModel.searchNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success -> {
-                    hideProgressBar()
                     response.data?.let { newsResponse ->
                         searchAndSearchNewsAdapter.differ.submitList(newsResponse.articles)
+                        disableSearchIllustration()
                     }
                 }
 
                 is Resource.Error -> {
-                    hideProgressBar()
                     response.message?.let { message ->
                         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+                        disableSearchIllustration()
                     }
                 }
 
                 is Resource.Loading -> {
-                    showProgressBar()
+                    enableSearchIllustration()
                 }
             }
         })
-    }
-
-    private fun hideProgressBar() {
-        progressBar.visibility = View.INVISIBLE
-    }
-
-    private fun showProgressBar() {
-        progressBar.visibility = View.VISIBLE
     }
 
     private fun setupRecyclerView() {
@@ -98,5 +90,13 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
         )
         searchNewsRecyclerView.layoutManager = linearLayoutManager
         searchNewsRecyclerView.adapter = searchAndSearchNewsAdapter
+    }
+
+    private fun enableSearchIllustration() {
+        searchIllustration.visibility = View.VISIBLE
+    }
+
+    private fun disableSearchIllustration() {
+        searchIllustration.visibility = View.GONE
     }
 }
