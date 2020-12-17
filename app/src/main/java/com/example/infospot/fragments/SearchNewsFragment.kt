@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infospot.Adapters.SavedAndSearchNewsAdapter
 import com.example.infospot.R
 import com.example.infospot.UI.ArticleWebViewActivity
+import com.example.infospot.UI.Error
 import com.example.infospot.UI.NewsActivity
 import com.example.infospot.UI.NewsViewModel
 import com.example.infospot.utils.Constants.Companion.SEARCH_NEWS_TIME_DELAY
@@ -76,7 +77,6 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
                 }
 
                 is Resource.Loading -> {
-                    enableSearchIllustration()
                 }
             }
         })

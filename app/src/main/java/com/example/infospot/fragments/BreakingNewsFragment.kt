@@ -10,10 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infospot.Adapters.CategoryAdapter
 import com.example.infospot.Adapters.TopNewsAdapter
 import com.example.infospot.R
-import com.example.infospot.UI.ArticleWebViewActivity
-import com.example.infospot.UI.CategoryActivity
-import com.example.infospot.UI.NewsActivity
-import com.example.infospot.UI.NewsViewModel
+import com.example.infospot.UI.*
 import com.example.infospot.utils.Constants.Companion.CATEGORY_LIST
 import com.example.infospot.utils.Resource
 import kotlinx.android.synthetic.main.fragment_breaking_news.*
