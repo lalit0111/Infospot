@@ -17,6 +17,9 @@ import com.example.infospot.UI.NewsViewModel
 import com.example.infospot.utils.Constants.Companion.CATEGORY_LIST
 import com.example.infospot.utils.Resource
 import kotlinx.android.synthetic.main.fragment_breaking_news.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 
 class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
@@ -37,6 +40,8 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
             intent.putExtra("articleURL", it.url)
             startActivity(intent)
         }
+
+        dateText.text = getDate()
 
         categoryAdapter.setOnItemClickListener { category: String, color: String ->
             val intent = Intent(context, CategoryActivity::class.java)
@@ -98,6 +103,13 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
     private fun showProgressBar() {
         shimmer.startShimmer()
+    }
+
+    private fun getDate(): String {
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+        val formatted = current.format(formatter)
+        return formatted.substring(0, 11)
     }
 
 }

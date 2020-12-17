@@ -7,6 +7,10 @@ import com.example.infospot.models.Article
 class NewsRepository(
     val articleDatabase: ArticleDatabase
 ) {
+
+    suspend fun deleteAllArticles() =
+        articleDatabase.getArticleDao().deleteAllArticle()
+
     suspend fun getTopNews(countryCode: String, pageNumber: Int) =
         RetrofitInstance.api.getTopNews(countryCode, pageNumber)
 

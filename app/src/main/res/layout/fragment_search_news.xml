@@ -32,7 +32,7 @@
         app:esvElevation="7dp"
         app:esvHintText="Search News"
         app:esvNoFilter="true"
-        app:esvSpeechRecognizerLogo="@drawable/icon_with_text"
+        app:esvSpeechRecognizerLogo="@mipmap/ic_launcher"
         app:esvSuggestionsEnabled="true" />
 
 

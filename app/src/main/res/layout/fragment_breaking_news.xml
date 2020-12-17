@@ -27,14 +27,14 @@
                 android:layout_height="34dp"
                 android:src="@drawable/group_1"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/appCompatTextView"
+                app:layout_constraintEnd_toStartOf="@+id/dateText"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/appCompatTextView"
+                android:id="@+id/dateText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"

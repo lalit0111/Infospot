@@ -10,9 +10,10 @@ import com.example.infospot.Adapters.SavedAndSearchNewsAdapter
 import com.example.infospot.R
 import com.example.infospot.UI.NewsActivity
 import com.example.infospot.UI.NewsViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.fragment_saved_news.*
-import kotlinx.android.synthetic.main.fragment_search_news.*
 
 class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
 
@@ -22,10 +23,6 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
-
-        if (savedAndSearchNewsAdapter.differ.currentList.isNotEmpty()) {
-            searchIllustration.visibility = View.GONE
-        }
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
@@ -56,11 +53,24 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
             }
         }
 
+        exploreNews.setOnClickListener {
+            (activity as NewsActivity).fragmentViewPager.currentItem = 1
+        }
+
         ItemTouchHelper(itemTouchHelperCallback).apply {
             attachToRecyclerView(savedNewsRecyclerView)
         }
 
+        deleteAll.setOnClickListener {
+            confirmDeleteAlert()
+        }
+
         viewModel.getSavedNews().observe(viewLifecycleOwner, { articles ->
+            if (articles.isEmpty()) {
+                saveIllustration.visibility = View.VISIBLE
+            } else {
+                saveIllustration.visibility = View.GONE
+            }
             savedAndSearchNewsAdapter.differ.submitList(articles)
         })
     }
@@ -76,5 +86,17 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
         savedNewsRecyclerView.layoutManager = linearLayoutManager
         savedNewsRecyclerView.adapter = savedAndSearchNewsAdapter
     }
+
+    private fun confirmDeleteAlert() =
+        MaterialAlertDialogBuilder(requireContext(), R.style.CustomMaterialDialog)
+            .setIcon(R.drawable.ic_trash_2)
+            .setTitle("Delete All Articles")
+            .setMessage("Are you sure You want to delete All saved news?")
+            .setPositiveButton("Yes") { _, _ ->
+                viewModel.deleteAllArticle()
+            }
+            .setNegativeButton("No") { _, _ ->
+            }
+            .show()
 
 }

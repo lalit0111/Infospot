@@ -130,7 +130,7 @@ class TopNewsAdapter(val viewModel: NewsViewModel) :
         Glide.with(context)
             .load(url)
             .fitCenter()
-            .placeholder(R.drawable.ic_placeholder).centerInside()
+            .placeholder(R.drawable.ic_undraw_page_not_found_su7k)
             .into(image)
     }
 

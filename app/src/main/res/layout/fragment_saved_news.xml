@@ -37,6 +37,7 @@
                     android:textSize="20sp" />
 
                 <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/deleteAll"
                     android:layout_width="25dp"
                     android:layout_height="20dp"
                     android:layout_alignParentTop="true"
@@ -54,18 +55,56 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/saveIllustration"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:src="@drawable/ic_bookmark_illustration" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/savedNewsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:id="@+id/saveIllustration"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_bookmark_illustration" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/merriweather_sans_bold"
+                    android:text="No Saved News"
+                    android:textSize="25sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/exploreNews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="57dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:elevation="5dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:letterSpacing="0.08"
+                    android:text="Explore News"
+                    android:textAllCaps="false"
+                    android:textColor="#6c63ff"
+                    android:textSize="15sp"
+                    app:backgroundTint="@color/white"
+                    app:cornerRadius="3dp"
+                    app:elevation="5dp"
+                    app:strokeColor="#6c63ff"
+                    app:strokeWidth="1.5dp" />
+
+            </LinearLayout>
+
 
         </FrameLayout>
 

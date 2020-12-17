@@ -29,6 +29,10 @@ class NewsViewModel(
         getTopNews("in")
     }
 
+    fun deleteAllArticle() = viewModelScope.launch {
+        newsRepository.deleteAllArticles()
+    }
+
     fun getTopNews(countryCode: String) = viewModelScope.launch {
         breakingNews.postValue(Resource.Loading())
         val response = newsRepository.getTopNews(countryCode, breakingNewsPage)
