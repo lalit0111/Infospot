@@ -1,5 +1,6 @@
 package com.example.infospot.UI
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -53,6 +54,8 @@ class CategoryActivity : AppCompatActivity() {
                     hideShimmer()
                     response.message?.let { message ->
                         Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
+                        val intent = Intent(applicationContext, Error::class.java)
+                        startActivity(intent)
                     }
                 }
 

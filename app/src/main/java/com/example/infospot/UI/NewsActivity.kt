@@ -1,5 +1,6 @@
 package com.example.infospot.UI
 
+import am.appwise.components.ni.NoInternetDialog
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,8 @@ import kotlinx.android.synthetic.main.activity_news.*
 class NewsActivity : AppCompatActivity() {
 
     lateinit var viewModel: NewsViewModel
+    lateinit var noInternetDialog: NoInternetDialog
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +55,8 @@ class NewsActivity : AppCompatActivity() {
         bottomTabBar.isFocusableInTouchMode = true
         bottomTabBar.touchscreenBlocksFocus = true
 
+        noInternetDialog = noInternetAlert()
+
         bottomTabBar.addBubbleListener(object : OnBubbleClickListener {
             override fun onBubbleClick(id: Int) {
                 when (id) {
@@ -63,5 +68,17 @@ class NewsActivity : AppCompatActivity() {
         })
 
     }
+
+    private fun noInternetAlert() = NoInternetDialog.Builder(this)
+        .setCancelable(false)
+        .setDialogRadius(50f)
+        .setBgGradientCenter(resources.getColor(R.color.light_blue))
+        .setBgGradientStart(resources.getColor(R.color.light_blue))
+        .setBgGradientEnd(resources.getColor(R.color.light_blue))
+        .setButtonColor(resources.getColor(R.color.white))
+        .setButtonIconsColor(resources.getColor(R.color.light_blue))
+        .setButtonTextColor(resources.getColor(R.color.black))
+        .setWifiLoaderColor(resources.getColor(R.color.light_blue))
+        .build()
 
 }

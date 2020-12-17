@@ -70,6 +70,8 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
                     response.message?.let { message ->
                         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
                         disableSearchIllustration()
+                        val intent = Intent(context, Error::class.java)
+                        startActivity(intent)
                     }
                 }
 

@@ -1,17 +1,22 @@
 package com.example.infospot.fragments
 
+import android.content.Intent
+import android.graphics.Canvas
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.infospot.Adapters.SavedAndSearchNewsAdapter
 import com.example.infospot.R
+import com.example.infospot.UI.ArticleWebViewActivity
 import com.example.infospot.UI.NewsActivity
 import com.example.infospot.UI.NewsViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.fragment_saved_news.*
 
@@ -51,6 +56,43 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
                     show()
                 }
             }
+
+            override fun onChildDraw(
+                c: Canvas,
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                dX: Float,
+                dY: Float,
+                actionState: Int,
+                isCurrentlyActive: Boolean
+            ) {
+                RecyclerViewSwipeDecorator.Builder(
+                    c,
+                    recyclerView,
+                    viewHolder,
+                    dX,
+                    dY,
+                    actionState,
+                    isCurrentlyActive
+                ).addSwipeRightBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.red_400
+                    )
+                )
+                    .addSwipeRightActionIcon(R.drawable.ic_baseline_delete_outline_24)
+                    .create()
+                    .decorate()
+                super.onChildDraw(
+                    c,
+                    recyclerView,
+                    viewHolder,
+                    dX,
+                    dY,
+                    actionState,
+                    isCurrentlyActive
+                )
+            }
         }
 
         exploreNews.setOnClickListener {
@@ -73,6 +115,12 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
             }
             savedAndSearchNewsAdapter.differ.submitList(articles)
         })
+
+        savedAndSearchNewsAdapter.setOnItemClickListener {
+            val intent = Intent(context, ArticleWebViewActivity::class.java)
+            intent.putExtra("articleURL", it.url)
+            startActivity(intent)
+        }
     }
 
     private fun setupRecyclerView() {

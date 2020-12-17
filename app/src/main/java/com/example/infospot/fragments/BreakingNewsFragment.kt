@@ -63,6 +63,8 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
                     hideProgressBar()
                     response.message?.let { message ->
                         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+                        val intent = Intent(context, Error::class.java)
+                        startActivity(intent)
                     }
                 }
 

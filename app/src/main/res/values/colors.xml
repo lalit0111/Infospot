@@ -6,6 +6,8 @@
     <color name="white">#FFF</color>
     <color name="black">#000000</color>
     <color name="red">#EA4335</color>
+    <color name="light_blue">#4285F4</color>
     <color name="darkYellow">#ffc13f</color>
     <color name="category">#d8bbff</color>
+    <color name="red_400">#EF5350</color>
 </resources>
