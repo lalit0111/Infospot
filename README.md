@@ -2,7 +2,7 @@
 
 # Infospot
 
-Infospot is a News Application which provides latest news from india and brings latest news.
+Infospot is a News Application which provides latest news from india and brings top news headlines from across the world.
 Powered by [News Api](https://newsapi.org). 
 
 ### Features
