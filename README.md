@@ -17,6 +17,8 @@ Powered by [News Api](https://newsapi.org).
 <img src="previews/category.png" width=200/> <img src="previews/search.png" width=200/>
 <img src="previews/voice.png" width=200/>
 
+[Download Apk from here](https://drive.google.com/file/d/106w1psfyrRhefqD0wSF8LMMXTFrgYvLX/view?usp=sharing)
+
 ### [Demo Video](https://drive.google.com/file/d/1DUsXrYepIP18fH3PCemaazKxR2zr3hET/view?usp=sharing)
 
 
